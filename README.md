@@ -368,7 +368,7 @@ Before running the application, ensure that you have:
 ### Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/merciful-islam-01/Hospital-Management-System.git
 ```
 
 Then open the cloned project directory:
