@@ -1,0 +1,2 @@
+MR001,patient01,doctor01,25-08-2026,120/80,75,Normal consultation,Patient is stable
+MR002,patient01,doctor02,26-08-2026,125/82,78,General check-up,Mild headache reported

@@ -1,0 +1,3 @@
+PR001,patient01,doctor01,25-08-2026,Paracetamol,500mg,Take twice daily after food
+PR002,patient01,doctor02,26-08-2026,Cetirizine,10mg,Take once at nightPR1789463564436,patient 02,doctor02,30-10-2026,Paracetamol,2 times per day,Stop stressing much.
+PR1789464072122,patient01,doctor01,15-09-2026,Paracetamol,2 times per day,don't stress much

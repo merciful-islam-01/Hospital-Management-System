@@ -1,0 +1,4 @@
+APT1787823204890,patient01,doctor02 - General Medicine,30-10-2026,16:00,Booked
+APT1787823586704,patient01,doctor03 - Dermatology,31-10-2026,10:00,Booked
+APT1787823879519,patient01,doctor02 - General Medicine,31-10-2026,09:00,Booked
+APT1789458817360,patient02,doctor02,30-10-2026,09:00,Booked

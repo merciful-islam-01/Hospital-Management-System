@@ -1,0 +1,9 @@
+U001,Admin User,admin01,1234,0123456789,AdminStaff,A001,-
+U002,Mercy,doctor01,1234,0123456790,Doctor,D001,Cardiology
+U003,Ratul,patient01,1234,0123456791,Patient,P001,-
+U004,Manager Darwin,manager01,1234,0123456792,MedicalManager,M001,-
+U005,Fedrick,doctor02,1234,0123456793,Doctor,D002,General Medicine
+U006,Sophia,doctor03,1234,0123456794,Doctor,D003,Dermatology
+U007,Aisha,patient02,1234,0123456795,Patient,P002,-
+U008,Adam,patient03,1234,0123456796,Patient,P003,-
+U009,Jack,patient04,1234,0123456797,Patient,P004,-
