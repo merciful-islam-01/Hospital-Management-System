@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -27,7 +28,9 @@ public class DoctorDashboard extends JFrame {
         setResizable(false);
 
         try {
-            backgroundImage = ImageIO.read(new File("assets/hospital_portal_bg.png"));
+            backgroundImage = ImageIO.read(
+                    new File("assets/hospital_portal_bg.png")
+            );
         } catch (Exception e) {
             backgroundImage = null;
         }
@@ -100,6 +103,7 @@ public class DoctorDashboard extends JFrame {
 
         header.add(brand, BorderLayout.WEST);
         header.add(session, BorderLayout.EAST);
+
         return header;
     }
 
@@ -124,29 +128,59 @@ public class DoctorDashboard extends JFrame {
         sidebar.add(Box.createRigidArea(new Dimension(0, 22)));
 
         JButton profile = createMenuButton("My Profile");
+        JButton appointments = createMenuButton("My Appointments");
         JButton records = createMenuButton("Patient Records");
         JButton vitals = createMenuButton("Vital Signs");
         JButton notes = createMenuButton("Consultation Notes");
         JButton prescriptions = createMenuButton("Prescriptions");
         JButton lab = createMenuButton("Lab / Imaging Request");
 
-        profile.addActionListener(e -> new DoctorProfileFrame(username).setVisible(true));
-        records.addActionListener(e -> new PatientRecordsFrame().setVisible(true));
-        vitals.addActionListener(e -> new VitalSignsFrame(username).setVisible(true));
-        notes.addActionListener(e -> new ConsultationNotesFrame(username).setVisible(true));
-        prescriptions.addActionListener(e -> new DoctorPrescriptionFrame(username).setVisible(true));
-        lab.addActionListener(e -> new LabImagingRequestFrame(username).setVisible(true));
+        profile.addActionListener(
+                e -> new DoctorProfileFrame(username).setVisible(true)
+        );
+
+        appointments.addActionListener(
+                e -> new DoctorAppointmentsFrame(username).setVisible(true)
+        );
+
+        records.addActionListener(
+                e -> new PatientRecordsFrame().setVisible(true)
+        );
+
+        vitals.addActionListener(
+                e -> new VitalSignsFrame(username).setVisible(true)
+        );
+
+        notes.addActionListener(
+                e -> new ConsultationNotesFrame(username).setVisible(true)
+        );
+
+        prescriptions.addActionListener(
+                e -> new DoctorPrescriptionFrame(username).setVisible(true)
+        );
+
+        lab.addActionListener(
+                e -> new LabImagingRequestFrame(username).setVisible(true)
+        );
 
         sidebar.add(profile);
         sidebar.add(Box.createRigidArea(new Dimension(0, 8)));
+
+        sidebar.add(appointments);
+        sidebar.add(Box.createRigidArea(new Dimension(0, 8)));
+
         sidebar.add(records);
         sidebar.add(Box.createRigidArea(new Dimension(0, 8)));
+
         sidebar.add(vitals);
         sidebar.add(Box.createRigidArea(new Dimension(0, 8)));
+
         sidebar.add(notes);
         sidebar.add(Box.createRigidArea(new Dimension(0, 8)));
+
         sidebar.add(prescriptions);
         sidebar.add(Box.createRigidArea(new Dimension(0, 8)));
+
         sidebar.add(lab);
 
         sidebar.add(Box.createVerticalGlue());
@@ -175,7 +209,9 @@ public class DoctorDashboard extends JFrame {
         title.setForeground(TEXT_WHITE);
         title.setFont(new Font("Arial", Font.BOLD, 31));
 
-        JLabel subtitle = new JLabel("Manage patient care, clinical records, prescriptions and diagnostic requests.");
+        JLabel subtitle = new JLabel(
+                "Manage patient care, clinical records, prescriptions and diagnostic requests."
+        );
         subtitle.setForeground(TEXT_MUTED);
         subtitle.setFont(new Font("Arial", Font.PLAIN, 12));
 
@@ -185,37 +221,82 @@ public class DoctorDashboard extends JFrame {
         heading.add(Box.createRigidArea(new Dimension(0, 5)));
         heading.add(subtitle);
 
-        JPanel cards = new JPanel(new GridLayout(2, 3, 14, 14));
+        JPanel cards = new JPanel(new GridLayout(2, 4, 14, 14));
         cards.setOpaque(false);
         cards.setBorder(new EmptyBorder(24, 0, 0, 0));
 
         DashboardCard profile = new DashboardCard(
-                "D", "My Profile",
-                "Review and update your doctor profile and professional contact information.");
-        DashboardCard records = new DashboardCard(
-                "R", "Patient Records",
-                "Access patient medical records and review clinical information.");
-        DashboardCard vitals = new DashboardCard(
-                "V", "Vital Signs",
-                "Record patient blood pressure, heart rate and other vital observations.");
-        DashboardCard notes = new DashboardCard(
-                "N", "Consultation Notes",
-                "Document consultation findings, clinical notes and treatment outcomes.");
-        DashboardCard prescription = new DashboardCard(
-                "Rx", "Prescriptions",
-                "Issue medication prescriptions with dosage and treatment instructions.");
-        DashboardCard lab = new DashboardCard(
-                "L", "Lab / Imaging",
-                "Create laboratory and imaging requests for patient investigations.");
+                "D",
+                "My Profile",
+                "Review and update your doctor profile and professional contact information."
+        );
 
-        profile.addMouseListener(click(() -> new DoctorProfileFrame(username).setVisible(true)));
-        records.addMouseListener(click(() -> new PatientRecordsFrame().setVisible(true)));
-        vitals.addMouseListener(click(() -> new VitalSignsFrame(username).setVisible(true)));
-        notes.addMouseListener(click(() -> new ConsultationNotesFrame(username).setVisible(true)));
-        prescription.addMouseListener(click(() -> new DoctorPrescriptionFrame(username).setVisible(true)));
-        lab.addMouseListener(click(() -> new LabImagingRequestFrame(username).setVisible(true)));
+        DashboardCard appointments = new DashboardCard(
+                "A",
+                "My Appointments",
+                "View patients booked with you, including appointment dates and times."
+        );
+
+        DashboardCard records = new DashboardCard(
+                "R",
+                "Patient Records",
+                "Access patient medical records and review clinical information."
+        );
+
+        DashboardCard vitals = new DashboardCard(
+                "V",
+                "Vital Signs",
+                "Record patient blood pressure, heart rate and other vital observations."
+        );
+
+        DashboardCard notes = new DashboardCard(
+                "N",
+                "Consultation Notes",
+                "Document consultation findings, clinical notes and treatment outcomes."
+        );
+
+        DashboardCard prescription = new DashboardCard(
+                "Rx",
+                "Prescriptions",
+                "Issue medication prescriptions with dosage and treatment instructions."
+        );
+
+        DashboardCard lab = new DashboardCard(
+                "L",
+                "Lab / Imaging",
+                "Create laboratory and imaging requests for patient investigations."
+        );
+
+        profile.addMouseListener(
+                click(() -> new DoctorProfileFrame(username).setVisible(true))
+        );
+
+        appointments.addMouseListener(
+                click(() -> new DoctorAppointmentsFrame(username).setVisible(true))
+        );
+
+        records.addMouseListener(
+                click(() -> new PatientRecordsFrame().setVisible(true))
+        );
+
+        vitals.addMouseListener(
+                click(() -> new VitalSignsFrame(username).setVisible(true))
+        );
+
+        notes.addMouseListener(
+                click(() -> new ConsultationNotesFrame(username).setVisible(true))
+        );
+
+        prescription.addMouseListener(
+                click(() -> new DoctorPrescriptionFrame(username).setVisible(true))
+        );
+
+        lab.addMouseListener(
+                click(() -> new LabImagingRequestFrame(username).setVisible(true))
+        );
 
         cards.add(profile);
+        cards.add(appointments);
         cards.add(records);
         cards.add(vitals);
         cards.add(notes);
@@ -224,6 +305,7 @@ public class DoctorDashboard extends JFrame {
 
         outer.add(heading, BorderLayout.NORTH);
         outer.add(cards, BorderLayout.CENTER);
+
         return outer;
     }
 
@@ -238,7 +320,10 @@ public class DoctorDashboard extends JFrame {
 
     private JButton createMenuButton(String text) {
         JButton button = new JButton(text);
-        button.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
+
+        button.setMaximumSize(
+                new Dimension(Integer.MAX_VALUE, 44)
+        );
         button.setPreferredSize(new Dimension(210, 44));
         button.setHorizontalAlignment(SwingConstants.LEFT);
         button.setBorder(new EmptyBorder(0, 16, 0, 10));
@@ -247,19 +332,26 @@ public class DoctorDashboard extends JFrame {
         button.setFont(new Font("Arial", Font.BOLD, 11));
         button.setFocusPainted(false);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         return button;
     }
 
     private JButton createLogoutButton() {
         JButton button = new JButton("Logout");
-        button.setMaximumSize(new Dimension(Integer.MAX_VALUE, 42));
+
+        button.setMaximumSize(
+                new Dimension(Integer.MAX_VALUE, 42)
+        );
         button.setPreferredSize(new Dimension(210, 42));
         button.setBackground(new Color(80, 32, 36));
         button.setForeground(new Color(255, 220, 220));
         button.setFont(new Font("Arial", Font.BOLD, 11));
         button.setFocusPainted(false);
-        button.setBorder(BorderFactory.createLineBorder(new Color(150, 60, 68)));
+        button.setBorder(
+                BorderFactory.createLineBorder(new Color(150, 60, 68))
+        );
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         return button;
     }
 
@@ -283,7 +375,9 @@ public class DoctorDashboard extends JFrame {
         bottom.setBackground(new Color(2, 27, 30, 240));
         bottom.setBorder(new EmptyBorder(9, 25, 9, 25));
 
-        JLabel status = new JLabel("●  SYSTEM READY     |     CLINICAL WORKSPACE");
+        JLabel status = new JLabel(
+                "●  SYSTEM READY     |     CLINICAL WORKSPACE"
+        );
         status.setForeground(DOCTOR_GREEN);
         status.setFont(new Font("Arial", Font.BOLD, 9));
 
@@ -293,6 +387,7 @@ public class DoctorDashboard extends JFrame {
 
         bottom.add(status, BorderLayout.WEST);
         bottom.add(secure, BorderLayout.EAST);
+
         return bottom;
     }
 
@@ -302,13 +397,23 @@ public class DoctorDashboard extends JFrame {
             super.paintComponent(g);
 
             Graphics2D g2 = (Graphics2D) g.create();
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setRenderingHint(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON
+            );
 
             g2.setColor(new Color(2, 22, 24));
             g2.fillRect(0, 0, getWidth(), getHeight());
 
             if (backgroundImage != null) {
-                g2.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
+                g2.drawImage(
+                        backgroundImage,
+                        0,
+                        0,
+                        getWidth(),
+                        getHeight(),
+                        null
+                );
             }
 
             GradientPaint overlay = new GradientPaint(
@@ -324,12 +429,25 @@ public class DoctorDashboard extends JFrame {
             GradientPaint accent = new GradientPaint(
                     0, 0, DOCTOR_GREEN,
                     getWidth(), 0,
-                    new Color(DOCTOR_GREEN.getRed(), DOCTOR_GREEN.getGreen(), DOCTOR_GREEN.getBlue(), 0)
+                    new Color(
+                            DOCTOR_GREEN.getRed(),
+                            DOCTOR_GREEN.getGreen(),
+                            DOCTOR_GREEN.getBlue(),
+                            0
+                    )
             );
+
             g2.setPaint(accent);
             g2.fillRect(0, 80, getWidth(), 2);
 
-            g2.setColor(new Color(DOCTOR_GREEN.getRed(), DOCTOR_GREEN.getGreen(), DOCTOR_GREEN.getBlue(), 10));
+            g2.setColor(
+                    new Color(
+                            DOCTOR_GREEN.getRed(),
+                            DOCTOR_GREEN.getGreen(),
+                            DOCTOR_GREEN.getBlue(),
+                            10
+                    )
+            );
             g2.fillOval(720, 105, 430, 430);
 
             g2.dispose();
@@ -337,12 +455,17 @@ public class DoctorDashboard extends JFrame {
     }
 
     private class DashboardCard extends JPanel {
+
         private final String symbol;
         private final String title;
         private final String description;
         private boolean hover = false;
 
-        DashboardCard(String symbol, String title, String description) {
+        DashboardCard(
+                String symbol,
+                String title,
+                String description
+        ) {
             this.symbol = symbol;
             this.title = title;
             this.description = description;
@@ -368,34 +491,69 @@ public class DoctorDashboard extends JFrame {
         @Override
         protected void paintComponent(Graphics g) {
             Graphics2D g2 = (Graphics2D) g.create();
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            g2.setRenderingHint(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON
+            );
 
             int w = getWidth();
             int h = getHeight();
 
             g2.setColor(new Color(0, 0, 0, 90));
-            g2.fillRoundRect(6, 7, w - 10, h - 10, 22, 22);
+            g2.fillRoundRect(
+                    6, 7, w - 10, h - 10, 22, 22
+            );
 
-            g2.setColor(hover ? new Color(7, 55, 55, 246) : new Color(5, 41, 45, 240));
-            g2.fillRoundRect(1, 1, w - 8, h - 10, 20, 20);
+            g2.setColor(
+                    hover
+                            ? new Color(7, 55, 55, 246)
+                            : new Color(5, 41, 45, 240)
+            );
+            g2.fillRoundRect(
+                    1, 1, w - 8, h - 10, 20, 20
+            );
 
-            g2.setColor(new Color(
-                    DOCTOR_GREEN.getRed(),
-                    DOCTOR_GREEN.getGreen(),
-                    DOCTOR_GREEN.getBlue(),
-                    hover ? 190 : 95
-            ));
+            g2.setColor(
+                    new Color(
+                            DOCTOR_GREEN.getRed(),
+                            DOCTOR_GREEN.getGreen(),
+                            DOCTOR_GREEN.getBlue(),
+                            hover ? 190 : 95
+                    )
+            );
             g2.setStroke(new BasicStroke(1.2f));
-            g2.drawRoundRect(1, 1, w - 8, h - 10, 20, 20);
+            g2.drawRoundRect(
+                    1, 1, w - 8, h - 10, 20, 20
+            );
 
-            g2.setColor(new Color(DOCTOR_GREEN.getRed(), DOCTOR_GREEN.getGreen(), DOCTOR_GREEN.getBlue(), 30));
+            g2.setColor(
+                    new Color(
+                            DOCTOR_GREEN.getRed(),
+                            DOCTOR_GREEN.getGreen(),
+                            DOCTOR_GREEN.getBlue(),
+                            30
+                    )
+            );
             g2.fillOval(20, 20, 48, 48);
 
             g2.setColor(DOCTOR_GREEN);
             g2.drawOval(20, 20, 48, 48);
-            g2.setFont(new Font("Arial", Font.BOLD, symbol.length() > 1 ? 14 : 18));
+
+            g2.setFont(
+                    new Font(
+                            "Arial",
+                            Font.BOLD,
+                            symbol.length() > 1 ? 14 : 18
+                    )
+            );
+
             FontMetrics sfm = g2.getFontMetrics();
-            g2.drawString(symbol, 44 - sfm.stringWidth(symbol) / 2, 50);
+            g2.drawString(
+                    symbol,
+                    44 - sfm.stringWidth(symbol) / 2,
+                    50
+            );
 
             g2.setColor(TEXT_WHITE);
             g2.setFont(new Font("Arial", Font.BOLD, 16));
@@ -403,7 +561,14 @@ public class DoctorDashboard extends JFrame {
 
             g2.setColor(TEXT_MUTED);
             g2.setFont(new Font("Arial", Font.PLAIN, 10));
-            drawWrapped(g2, description, 20, 116, w - 48, 14);
+            drawWrapped(
+                    g2,
+                    description,
+                    20,
+                    116,
+                    w - 48,
+                    14
+            );
 
             g2.setColor(DOCTOR_GREEN);
             g2.setFont(new Font("Arial", Font.BOLD, 9));
@@ -413,25 +578,47 @@ public class DoctorDashboard extends JFrame {
             super.paintComponent(g);
         }
 
-        private void drawWrapped(Graphics2D g2, String text, int x, int y, int maxWidth, int lineHeight) {
+        private void drawWrapped(
+                Graphics2D g2,
+                String text,
+                int x,
+                int y,
+                int maxWidth,
+                int lineHeight
+        ) {
             FontMetrics fm = g2.getFontMetrics();
             String[] words = text.split(" ");
             StringBuilder line = new StringBuilder();
             int currentY = y;
 
             for (String word : words) {
-                String test = line.length() == 0 ? word : line + " " + word;
-                if (fm.stringWidth(test) > maxWidth && line.length() > 0) {
-                    g2.drawString(line.toString(), x, currentY);
+                String test = line.length() == 0
+                        ? word
+                        : line + " " + word;
+
+                if (fm.stringWidth(test) > maxWidth
+                        && line.length() > 0) {
+
+                    g2.drawString(
+                            line.toString(),
+                            x,
+                            currentY
+                    );
+
                     currentY += lineHeight;
                     line = new StringBuilder(word);
+
                 } else {
                     line = new StringBuilder(test);
                 }
             }
 
             if (line.length() > 0) {
-                g2.drawString(line.toString(), x, currentY);
+                g2.drawString(
+                        line.toString(),
+                        x,
+                        currentY
+                );
             }
         }
     }
